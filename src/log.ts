@@ -8,7 +8,7 @@ interface Log{
 
 export const log=<Log>function(level:log.Level, ...message:{toString():string}[]){
 	const extra:string[]=[];
-	const _message=message.map(v=>{
+	const _message=message.map(v=>{ 
 		let string='<error>';
 		try{
 			if(log.includeStack &&  v instanceof Error){
