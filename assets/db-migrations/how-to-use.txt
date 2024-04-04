@@ -1,0 +1,8 @@
+On startup the server searches this dir for files with the naming scheme
+YYYY-MM-DD-HHMM-<anything here>.sql
+For example:
+2023-08-22-0208-delete columns.sql
+The first part of the name is a time and it should be the time of file creation but it isn't actually used for anything. It's just there to make sure the file name is unique.
+The first time the server sees the file it will run it. If the file runs successfully (it is run inside a transaction block). It's recorded in the "--migration" table and not run again.
+
+You may not need to run a migration though if you are only making simple changes as the object repo system can handle things like adding columns automatically

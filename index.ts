@@ -1,4 +1,4 @@
-import '@lib/stdext';
+// import '@lib/stdext';
 import { main } from "./src/main";
 import {log} from '@log';
 

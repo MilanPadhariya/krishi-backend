@@ -31,9 +31,9 @@ export async function main(){
 		log.error('failed to connect to db:',e)
 	}
 
-	if(db && environment.environmentType==='cloud'){
-		await db.runMigration(log,'assets/db-migrations');
-	}
+	// if(db && environment.environmentType==='cloud'){
+	// 	await db.runMigration(log,'assets/db-migrations');
+	// }
 
 	let objRepos:ObjRepos=null;
 	if(db){

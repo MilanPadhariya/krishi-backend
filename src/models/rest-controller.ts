@@ -27,8 +27,8 @@ export class RestController<
 		super(instanceType);
 	}
 
-	public isAuthorized(auth:RestTypes['body']['Auth']){
-		return this.userRepo.isLoggedIn(auth,this.permissions);
+	public isAuthorized(auth:RestTypes['body']['Auth']):Promise<null>{
+		return null;
 	}
 
 	protected adjustWhere(

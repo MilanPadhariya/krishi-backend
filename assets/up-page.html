@@ -1,0 +1,41 @@
+<html>
+		<head>
+			<title>${name}</title>
+			<style>
+				body{
+					font-family: Roboto, "Helvetica Neue", sans-serif;;
+				}
+			</style>
+		</head>
+		<body>
+			<div>
+				<b>${name}</b>
+			</div>
+			<table>
+				<tr>
+					<td>Started</td>
+					<td id="startTime"></td>
+				</tr>
+				<tr>
+					<td>Up time</td>
+					<td id="upTime"></td>
+				</tr>
+				<tr>
+					<td>Database Connected</td>
+					<td>${db}</td>
+				</tr>
+				<tr>
+					<td>Database Schema Validated</td>
+					<td>${schemaValidated}</td>
+				</tr>
+			</table>
+			<script>
+				const startTime=new Date("${startTime}");
+				const startTimeStr=`${startTime.getFullYear()}-${startTime.getMonth().toString().padStart(2,'0')}-${startTime.getDate()} ${startTime.toLocaleTimeString()}`;
+				document.getElementById('startTime').innerHTML=startTimeStr;
+				const upTime=Date.now()-startTime.getTime();
+				const upTimeStr=`${Math.floor(upTime/(1000*60*60))} Hours, ${Math.floor(upTime/(1000*60))%60} minutes`;
+				document.getElementById('upTime').innerHTML=upTimeStr;
+			</script>
+		</body>
+</html>

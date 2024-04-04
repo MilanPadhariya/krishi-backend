@@ -1,1 +1,1 @@
-export {ErrorRtrn} from '../../../lib/web-server/error-return';
+export {ErrorRtrn} from './../../lib/web-server/error-return';
