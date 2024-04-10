@@ -18,7 +18,6 @@ export async function main(){
 	log.info('starting pid',process.pid);
 	fs.writeFileSync('pid.txt',process.pid.toString());
 
-	log.info('environment type',environment.environmentType);
 	const webServer=new WebServer();
 
 	let db:Db;

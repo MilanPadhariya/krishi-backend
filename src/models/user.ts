@@ -14,10 +14,10 @@ export class User extends _User{
 export namespace User{
 	export import Props=_User.Props;
 
-	// export function hashPassword(password:string){
-	// 	const salt=bcrypt.genSaltSync();
-	// 	return bcrypt.hashSync(password,salt);
-	// }
+	export function hashPassword(password:string){
+		const salt=bcrypt.genSaltSync();
+		return bcrypt.hashSync(password,salt);
+	}
 
 	export class Repo extends ObjRepo<User>{
 		public constructor(db:sql.Db){
@@ -96,21 +96,21 @@ export namespace User{
 		// }
 	}
 	
-	// export class RestController extends _RestController<User,_User.RestTypes>{
-	// 	public constructor(
-	// 		objRepo:Repo,
-	// 	){
-	// 		super(User,objRepo,objRepo,0);
-	// 	}
+	export class RestController extends _RestController<User,_User.RestTypes>{
+		public constructor(
+			objRepo:Repo,
+		){
+			super(User,objRepo,objRepo,0);
+		}
 
-	// 	protected async adjustInstance(req:_RestController.Request<any>, instance:User):Promise<User>{
+		protected async adjustInstance(req:_RestController.Request<any>, instance:User):Promise<User>{
 
-	// 		if('password' in instance){
-	// 			instance.encryptedPassword=User.hashPassword(instance.password);
-	// 			delete instance.password;
-	// 		}
+			if('password' in instance){
+				instance.encryptedPassword=User.hashPassword(instance.password);
+				delete instance.password;
+			}
 
-	// 		return super.adjustInstance(req,instance);
-	// 	}
-	// }
+			return super.adjustInstance(req,instance);
+		}
+	}
 }

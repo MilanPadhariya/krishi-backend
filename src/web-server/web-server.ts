@@ -4,6 +4,7 @@ import { log } from '@log';
 import { Db } from '../db';
 import { ObjRepos } from '../models/obj-repos';
 import { RouteUpGet,RouteUpPost } from './routes-up';
+import { User } from '../models/user';
 
 export class WebServer extends _WebServer{
 	public constructor(){
@@ -14,6 +15,7 @@ export class WebServer extends _WebServer{
 		this.restRoute(new RouteUpGet(db,objRepos,'/up'));
 		this.restRoute(new RouteUpPost(db,objRepos));
 		if(objRepos){
+			this.modelRoute(new User.RestController(objRepos.user));
 		}else{
 			this.restRoute(new RouteUpGet(db,objRepos,'/'));
 		}

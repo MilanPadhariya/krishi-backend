@@ -1,9 +1,7 @@
 {
 	"--readme": "this file is only run for running the app in a local test enviroment!!! these don't go live",
 	"LOCAL": true,
-	"ENVIRONMENT_TYPE": "cloud",
 	"PORT": 3000,
-	"STORAGE_LOCAL": "./storage-local.tmp.json",
 	"POSTGRESQL_HOST": "ep-orange-bonus-a1b5jkh8.ap-southeast-1.aws.neon.tech",
 	"POSTGRESQL_PORT": "5432",
 	"POSTGRESQL_DATABASE": "krishidb",

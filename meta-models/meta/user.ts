@@ -8,8 +8,8 @@ export class User{
 	public encryptedPassword:string;
 	public authToken:string=null;
 	public permissions:number=0;
-	public firstName:string=null;
-	public lastName:string=null;
+	public firstName:string;
+	public lastName:string;
 	public createdAt:DateTime=new DateTime();
 	public lastSignInAt:DateTime=null;
 	public lastSignInIp:string=null;
@@ -31,7 +31,10 @@ export namespace User{
 				name: "email",
 				type: "string",
 				typeLength: [0,128],
-				decorators: {},
+				decorators: {
+					uniqueKey: true
+				},
+				uniqueKey: true,
 				notNull: true
 			},{
 				name: "encryptedPassword",
@@ -45,7 +48,11 @@ export namespace User{
 				name: "authToken",
 				type: "string",
 				typeLength: [32,32],
-				decorators: {},
+				decorators: {
+					uniqueKey: true,
+					"rest.readonly": true
+				},
+				uniqueKey: true,
 				default: null,
 				optional: true
 			},{
@@ -60,32 +67,36 @@ export namespace User{
 				type: "string",
 				typeLength: [0,128],
 				decorators: {},
-				default: null,
-				optional: true
+				notNull: true
 			},{
 				name: "lastName",
 				type: "string",
 				typeLength: [0,128],
 				decorators: {},
-				default: null,
-				optional: true
+				notNull: true
 			},{
 				name: "createdAt",
 				type: "date",
-				decorators: {},
+				decorators: {
+					"rest.readonly": true
+				},
 				default: "now()",
 				optional: true,
 				notNull: true
 			},{
 				name: "lastSignInAt",
 				type: "date",
-				decorators: {},
+				decorators: {
+					"rest.readonly": true
+				},
 				default: null,
 				optional: true
 			},{
 				name: "lastSignInIp",
 				type: "inet",
-				decorators: {},
+				decorators: {
+					"rest.readonly": true
+				},
 				default: null,
 				optional: true
 			},{
@@ -106,8 +117,8 @@ export namespace User{
 		encryptedPassword:string;
 		authToken?:string;
 		permissions?:number;
-		firstName?:string;
-		lastName?:string;
+		firstName:string;
+		lastName:string;
 		createdAt?:DateTime;
 		lastSignInAt?:DateTime;
 		lastSignInIp?:string;
@@ -116,6 +127,8 @@ export namespace User{
 
 	export interface UniqueKeyProps{
 		id:number;
+		email:string;
+		authToken?:string;
 	}
 
 	export interface PrimitiveProps{
@@ -124,8 +137,8 @@ export namespace User{
 		encryptedPassword:string;
 		authToken?:string;
 		permissions?:number;
-		firstName?:string;
-		lastName?:string;
+		firstName:string;
+		lastName:string;
 		createdAt?:DateTime;
 		lastSignInAt?:DateTime;
 		lastSignInIp?:string;
@@ -150,8 +163,8 @@ export namespace User{
 		email:string;
 		authToken?:string;
 		permissions?:number;
-		firstName?:string;
-		lastName?:string;
+		firstName:string;
+		lastName:string;
 		createdAt?:DateTime;
 		lastSignInAt?:DateTime;
 		lastSignInIp?:string;
@@ -162,8 +175,8 @@ export namespace User{
 		email:string;
 		authToken?:string;
 		permissions?:number;
-		firstName?:string;
-		lastName?:string;
+		firstName:string;
+		lastName:string;
 		createdAt?:DateTime;
 		lastSignInAt?:DateTime;
 		lastSignInIp?:string;
@@ -173,13 +186,9 @@ export namespace User{
 
 		interface WritableProps{
 			email:string;
-			authToken?:string;
 			permissions?:number;
-			firstName?:string;
-			lastName?:string;
-			createdAt?:DateTime;
-			lastSignInAt?:DateTime;
-			lastSignInIp?:string;
+			firstName:string;
+			lastName:string;
 			password:string;
 		}
 
