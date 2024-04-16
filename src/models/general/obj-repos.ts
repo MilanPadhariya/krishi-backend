@@ -2,7 +2,8 @@ import {environment} from "@environment";
 import {sql} from "@lib/database/sql";
 import {ObjRepo} from "@lib/object-repository";
 import {log} from "@log";
-import {User} from "./user";
+import {User} from "../user";
+import { Tool } from "../tool";
 
 export class ObjRepos{
 	public constructor(
@@ -11,10 +12,12 @@ export class ObjRepos{
 	}
 
 	public readonly user=new User.Repo(this.db);
+	public readonly tool=new Tool.Repo(this.db);
 
 	public async validateSchema(){
 		const repos=[
-			this.user
+			this.user,
+			this.tool
 		];
 
 		const allowAlter=(environment.environmentType==='cloud');

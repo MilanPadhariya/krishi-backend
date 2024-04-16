@@ -2,7 +2,7 @@ import {ModelMeta,RestTypes as _RestTypes} from '@lib/model-meta';
 import {ObjRepo} from '@lib/object-repository';
 import {WebServer} from '@lib/web-server';
 import {WhereTable} from '@lib/where';
-import {User} from './user';
+import {User} from '../user';
 
 type Request<Body>=WebServer.Request<User,Body>;
 type _Request<Body>=Request<Body>;
@@ -27,8 +27,8 @@ export class RestController<
 		super(instanceType);
 	}
 
-	public isAuthorized(auth:RestTypes['body']['Auth']):Promise<null>{
-		return null;
+	public isAuthorized(auth:RestTypes['body']['Auth']){
+		return this.userRepo.isLoggedIn(auth,this.permissions);
 	}
 
 	protected adjustWhere(

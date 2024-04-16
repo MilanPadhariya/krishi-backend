@@ -2,7 +2,7 @@ import {DateTime, WhereTable,uuid} from '@lib/model-meta';
 import * as bcrypt from 'bcrypt';
 import {User as _User} from '../../meta-models/meta/user';
 import { UserLoginBody, UserLogoutBody, UserMeBody } from './index'
-import {RestController as _RestController} from './rest-controller';
+import {RestController as _RestController} from './general/rest-controller';
 import {ObjRepo} from '@lib/object-repository';
 import {sql} from '@lib/database/sql';
 
