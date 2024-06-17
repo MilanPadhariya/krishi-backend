@@ -8,3 +8,4 @@ export * from './extensions/user-me-body';
 
 export * from './user';
 export * from './tool';
+export * from './rental-session';

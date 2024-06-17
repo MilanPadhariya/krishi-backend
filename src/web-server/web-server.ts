@@ -7,6 +7,7 @@ import { RouteUpGet,RouteUpPost } from './routes-up';
 import { User } from '../models/user';
 import { RouteUserLogin,RouteUserLogout,RouteUserMe } from './routes-user-login';
 import { Tool } from '../models/tool';
+import { RentalSession } from '../models/rental-session';
 
 export class WebServer extends _WebServer{
 	public constructor(){
@@ -23,6 +24,7 @@ export class WebServer extends _WebServer{
 		if(objRepos){
 			this.modelRoute(new User.RestController(objRepos.user));
 			this.modelRoute(new Tool.RestController(objRepos.tool,objRepos.user));
+			this.modelRoute(new RentalSession.RestController(objRepos.rentalSession,objRepos.user));
 		}else{
 			this.restRoute(new RouteUpGet(db,objRepos,'/'));
 		}

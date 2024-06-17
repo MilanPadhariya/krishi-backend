@@ -4,6 +4,7 @@ import {ObjRepo} from "@lib/object-repository";
 import {log} from "@log";
 import {User} from "../user";
 import { Tool } from "../tool";
+import { RentalSession } from "../rental-session";
 
 export class ObjRepos{
 	public constructor(
@@ -13,11 +14,13 @@ export class ObjRepos{
 
 	public readonly user=new User.Repo(this.db);
 	public readonly tool=new Tool.Repo(this.db);
+	public readonly rentalSession=new RentalSession.Repo(this.db,this.tool,this.user);
 
 	public async validateSchema(){
 		const repos=[
 			this.user,
-			this.tool
+			this.tool,
+			this.rentalSession
 		];
 
 		const allowAlter=(environment.environmentType==='cloud');
